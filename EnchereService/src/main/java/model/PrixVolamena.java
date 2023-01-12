@@ -4,7 +4,8 @@
  */
 package model;
 
-import DAObject.*;
+import BddObject.ObjectBDD;
+import BddObject.InfoDAO;
 import java.util.ArrayList;
 
 /**

@@ -4,7 +4,7 @@
  */
 package model;
 
-import DAObject.Connexion;
+import BddObject.Connexion;
 import java.sql.Connection;
 
 /**

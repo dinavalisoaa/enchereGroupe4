@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/AnnotationType.java to edit this template
  */
-package DAObject;
+package BddObject;
 
 /**
  *
@@ -10,15 +10,19 @@ package DAObject;
  */
 
 import java.lang.annotation.Retention;
+import java.lang.annotation.ElementType;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import javax.lang.model.element.Element;
 
 /**
  *
  * @author dina
  */
 @Retention(RetentionPolicy.RUNTIME)
-public @interface InfoDAO {
-    public String[]ignore()default {""};
-    public String table() default "";
-    public boolean validable() default false;
+@Target(ElementType.FIELD)
+public @interface UnColumn {
+    public boolean yes()default false;
+//    public String va;
+    
 }

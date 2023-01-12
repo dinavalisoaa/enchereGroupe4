@@ -4,7 +4,10 @@
  */
 package model;
 
-import DAObject.*;
+import BddObject.ObjectBDD;
+import BddObject.UnColumn;
+import BddObject.InfoDAO;
+import BddObject.Connexion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;

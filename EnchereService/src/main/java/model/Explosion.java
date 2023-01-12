@@ -4,13 +4,14 @@
  */
 package model;
 
+import BddObject.ObjectBDD;
+import BddObject.InfoDAO;
 import java.util.ArrayList;
 
 /**
  *
  * @author dina
  */
-import DAObject.*;
 
 /**
  *

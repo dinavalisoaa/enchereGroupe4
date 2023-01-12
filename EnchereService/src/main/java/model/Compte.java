@@ -4,12 +4,12 @@
  */
 package model;
 
-import DAObject.InfoDAO;
-import DAObject.ObjectBDD;
+import BddObject.InfoDAO;
+import BddObject.ObjectBDD;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.*;
-import DAObject.Ignore;
+import BddObject.Ignore;
 
 /**
  *

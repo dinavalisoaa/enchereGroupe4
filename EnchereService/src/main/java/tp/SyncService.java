@@ -1,7 +1,7 @@
 package tp;
 
 //import DAO.ObjectBDD;
-import DAObject.ObjectBDD;
+import BddObject.ObjectBDD;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;

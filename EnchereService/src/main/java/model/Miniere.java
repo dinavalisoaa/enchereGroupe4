@@ -4,9 +4,9 @@
  */
 package model;
 
-import DAObject.Connexion;
-import DAObject.InfoDAO;
-import DAObject.ObjectBDD;
+import BddObject.Connexion;
+import BddObject.InfoDAO;
+import BddObject.ObjectBDD;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;

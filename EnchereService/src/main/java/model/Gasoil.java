@@ -4,7 +4,8 @@
  */
 package model;
 
-import DAObject.*;
+import BddObject.ObjectBDD;
+import BddObject.InfoDAO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.time.LocalDate;

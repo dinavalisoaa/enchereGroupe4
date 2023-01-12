@@ -8,7 +8,8 @@ package model;
  *
  * @author dina
  */
-import DAObject.*;
+import BddObject.ObjectBDD;
+import BddObject.InfoDAO;
 import java.util.ArrayList;
 
 /**

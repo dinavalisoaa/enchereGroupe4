@@ -4,7 +4,7 @@
  */
 package utils;
 
-import DAObject.Connexion;
+import BddObject.Connexion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -34,7 +34,7 @@ public static int getSequence(String str) {
         ResultSetMetaData resultMeta = null;
         PreparedStatement pst = null;
         try {
-              connect=DAObject.Connexion.getConn();
+              connect=BddObject.Connexion.getConn();
                             pst=connect.prepareStatement("select next value for "+str+"_id_seq as date");
 
 //              pst=connect.prepareStatement("Select nextval('personne_id_seq') as date");
@@ -68,7 +68,7 @@ public static int getSequence_Sync() {
         ResultSetMetaData resultMeta = null;
         PreparedStatement pst = null;
         try {
-              connect=DAObject.Connexion.getConn();
+              connect=BddObject.Connexion.getConn();
 //              pst=connect.prepareStatement("Select nextval('tablesync_id_seq') as date");          
               pst=connect.prepareStatement("select next value for tablesync_id_seq as date");
 
