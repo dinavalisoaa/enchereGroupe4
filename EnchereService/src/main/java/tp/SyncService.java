@@ -30,7 +30,7 @@ public class SyncService {
  private String getUser() {
   String uri = "http://192.168.43.221:8080/test";
   RestTemplate restTemplate = new RestTemplate();
-  Miniere min=restTemplate.getForObject(uri, Miniere.class);
+  Users min=restTemplate.getForObject(uri, Users.class);
   System.out.println("User: "+ min.getLargeur() );
   return min.getNom();
  }

@@ -70,7 +70,7 @@ public class PointSource extends ObjectBDD {
     }
 
     public Object[] getVolamenaObtenu() throws Exception {
-        Volamena fits = new Volamena();
+        Produit fits = new Produit();
         fits.setPointSourceId(this.id);
         ArrayList fitotona = fits.select(null);
         return fitotona.toArray();
@@ -147,12 +147,12 @@ public class PointSource extends ObjectBDD {
         return fitotona.toArray();
     }
 public Object[] getCentriGlobal(Connection con) throws Exception {
-        Centrifuge fits = new Centrifuge();
+        Produit_Users fits = new Produit_Users();
         ArrayList fitotona = fits.select(con);
         return fitotona.toArray();
     }
     public Object[] getCentri(Connection con) throws Exception {
-        Centrifuge fits = new Centrifuge();
+        Produit_Users fits = new Produit_Users();
         fits.setPointSourceId(this.id);
         ArrayList fitotona = fits.select(con);
         return fitotona.toArray();
@@ -182,7 +182,7 @@ public Object[] getCentriGlobal(Connection con) throws Exception {
         Object[] dina = getCentri(con);
         double somme = 0.0;
         for (int i = 0; i < dina.length; i++) {
-            Centrifuge object = (Centrifuge) dina[i];
+            Produit_Users object = (Produit_Users) dina[i];
 //            System.out.println("QTE V:" + object.getVolamena().getQteVolamena() + " QTE t/h::" + this.getMoyenneDureteHoraire(con) + " QTE C:" + object.getQteVato() + " = " + new Double(object.getVolamena().getQteVolamena() * this.getMoyenneDureteHoraire(con) / object.getQteVato()));
             somme += new Double(object.getVolamena().getQteVolamena() /**
                      * this.getMoyenneDureteHoraire(con)
@@ -201,7 +201,7 @@ public Object[] getCentriGlobal(Connection con) throws Exception {
         Object[] dina = getVolamenaObtenu();
         double somme = 0.0;
         for (int i = 0; i < dina.length; i++) {
-            Volamena object = (Volamena) dina[i];
+            Produit object = (Produit) dina[i];
             somme += object.getQteVolamena();
         }
         return somme;
@@ -293,7 +293,7 @@ return gain-dep;
         Object[] dina = getCentri(con);
         double somme = 0.0;
         for (int i = 0; i < dina.length; i++) {
-            Centrifuge object = (Centrifuge) dina[i];
+            Produit_Users object = (Produit_Users) dina[i];
             somme += (object.getQteVato() / object.getDurerCentrifuge());
 //            System.out.println("model.PointSource.getDureteToto()"+object.getQteVato()+"/"+object.getDurerFitotona());
         }
@@ -304,7 +304,7 @@ return gain-dep;
         Object[] dina = getCentriGlobal(con);
         double somme = 0.0;
         for (int i = 0; i < dina.length; i++) {
-            Centrifuge object = (Centrifuge) dina[i];
+            Produit_Users object = (Produit_Users) dina[i];
             somme += (object.getQteVato() / object.getDurerCentrifuge());
         }
         return somme / dina.length;
@@ -318,10 +318,10 @@ return gain-dep;
 //    4 h --> 1.61
 //    1 -?
 
-    public Miniere getMiniere() throws Exception {
-        Miniere vaovao = new Miniere();
+    public Users getMiniere() throws Exception {
+        Users vaovao = new Users();
         vaovao.setId(this.miniereId);
-        ArrayList<Miniere> cpt = vaovao.select(null);
+        ArrayList<Users> cpt = vaovao.select(null);
         return cpt.get(0);
     }
 
