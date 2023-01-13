@@ -19,7 +19,6 @@ import java.util.Arrays;
 public class AppelEnchere extends ObjectBDD {
 
     int id = -1;
-String durer;
     int produitUsersid=-1;
 double prixMin=-1.0;
 String dateDebut;
@@ -38,14 +37,6 @@ String dateExp;
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDurer() {
-        return durer;
-    }
-
-    public void setDurer(String durer) {
-        this.durer = durer;
     }
 
     public int getProduitUsersid() {
