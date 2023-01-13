@@ -18,6 +18,7 @@ public class Produit extends ObjectBDD {
 
 int id=-1;
 String nom;
+int Categorieid ;
 
     public int getId() {
         return id;
@@ -33,6 +34,13 @@ String nom;
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+    public int getCategorieid() {
+        return Categorieid;
+    }
+
+    public void setCategorieid(int Categorieid) {
+        this.Categorieid = Categorieid;
     }
 
 }
