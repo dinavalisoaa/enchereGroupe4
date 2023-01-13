@@ -17,7 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.TableSync;
+//import model.TableSync;
 
 /**
  *
@@ -66,12 +66,7 @@ public class ButtonServlet extends HttpServlet {
         m.invoke(obj, con);
         String sql=((ObjectBDD)obj).insertion();
         sql = sql.replaceAll("'", "`");
-        TableSync ss = new TableSync();
-        ss.setSql(sql);
-        ss.setId(utils.UFunction.getSequence_Sync());
-        ss.setEtat(0);
-        ss.insert(null);  
-        String page = request.getParameter("page");
+       String page = request.getParameter("page");
         String params = "";
         if (request.getParameter("params") != null) {
             params = request.getParameter("params");

@@ -13,7 +13,7 @@
     <groupId>tp.ws</groupId>
     <artifactId>TP_WS</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>VolamenaService</name>
+    <name>EnchereService</name>
     <description>TP WS S5</description>
     <properties>
         <java.version>8</java.version>

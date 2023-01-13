@@ -23,7 +23,8 @@ public class ProduitUsers extends ObjectBDD {
     int id=-1;
     int produitId=-1;
     int usersId=-1;
-    public Users getUsers() throws Exception {
+    
+    public Users getPropio() throws Exception {
         Users vaovao = new Users();
         vaovao.setId(this.usersId);
         ArrayList<Users> cpt = vaovao.select(null);

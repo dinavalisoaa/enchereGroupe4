@@ -1,4 +1,4 @@
-package tp;
+package wservice;
 
 public class Connect{
 

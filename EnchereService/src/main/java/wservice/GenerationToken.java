@@ -1,4 +1,4 @@
-package tp;
+package wservice;
 
 import io.jsonwebtoken.Jwts;
 

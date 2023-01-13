@@ -29,7 +29,21 @@ public class Users extends ObjectBDD {
     public String getLogin() {
         return login;
     }
-
+    
+public int getLoginId() throws Exception{
+    this.setNom(nom);
+    this.setLogin(login);
+    if(this.select(null).size()>0){
+        return ((Users)this.select(null).get(0)).getId();
+    }
+    return -1;
+}
+  public Compte getCompte() throws Exception {
+        Compte vaovao = new Compte();
+        vaovao.setUsersId(this.id);
+        ArrayList<Compte> cpt = vaovao.select(null);
+        return cpt.get(0);
+    }
     public void setLogin(String login) {
         this.login = login;
     }

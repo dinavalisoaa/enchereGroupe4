@@ -2,23 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package utils;
 
-/**
- *
- * @author dina
- */
-import BddObject.ObjectBDD;
-import BddObject.InfoDAO;
 import java.util.ArrayList;
 
 /**
  *
  * @author dina
  */
-@InfoDAO(table = "Centrifugeuse")
-public class Centrifugeuse extends ObjectBDD {
-    int id=-1;
-    double consomHoraire=-1.0;
- 
+public class Data {
+//   String data;
+  Object data;
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+  
+   
 }
