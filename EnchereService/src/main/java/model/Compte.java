@@ -1,37 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
-/**
- *
- * @author dina
- */
-import BddObject.Ignore;
-import BddObject.ObjectBDD;
+import BddObject.Connexion;
 import BddObject.InfoDAO;
+import BddObject.ObjectBDD;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
  * @author dina
  */
 @InfoDAO(table = "Compte")
-public class Compte extends ObjectBDD {
-
-int id=-1;
-double montant=-1;
-int usersId=-1;
-String dateReload;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+public class Compte extends ObjectBDD {  
+    
+	private int id=-1;
+	private double montant=-1;
+	private int usersId;
+	private String dateReload;
 
     public double getMontant() {
         return montant;
@@ -41,20 +28,45 @@ String dateReload;
         this.montant = montant;
     }
 
-    public int getUsersId() {
-        return usersId;
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
-    }
+	/**
+	 * 
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getDateReload() {
-        return dateReload;
-    }
+	public double getNom() {
+		return this.montant;
+	}
 
-    public void setDateReload(String dateReload) {
-        this.dateReload = dateReload;
-    }
+	/**
+	 * 
+	 * @param montant
+	 */
+
+	/**
+	 * 
+	 * @param usersId
+	 */
+	public void setUsersId(int usersId) {
+		this.usersId = usersId;
+	}
+
+	public String getDateReload() {
+		return this.dateReload;
+	}
+
+	/**
+	 * 
+	 * @param dateReload
+	 */
+	public void setDateReload(String dateReload) {
+		this.dateReload = dateReload;
+	}
 
 }

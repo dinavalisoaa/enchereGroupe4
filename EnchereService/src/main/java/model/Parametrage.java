@@ -12,9 +12,12 @@ import java.util.Arrays;
  *
  * @author dina
  */
-@InfoDAO(table = "Categorie")
-public class Categorie extends ObjectBDD {
+@InfoDAO(table = "Parametrage")
+public class Parametrage extends ObjectBDD {  
+
+
 	private int id=-1;
+	private String value;
 	private String nom;
 
 	public int getId() {
@@ -27,6 +30,18 @@ public class Categorie extends ObjectBDD {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getValue() {
+		return this.value;
+	}
+
+	/**
+	 * 
+	 * @param value
+	 */
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	public String getNom() {

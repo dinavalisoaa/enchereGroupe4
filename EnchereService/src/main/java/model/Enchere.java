@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import BddObject.Connexion;
@@ -16,80 +13,124 @@ import java.util.Arrays;
  * @author dina
  */
 @InfoDAO(table = "Enchere")
-public class Enchere extends ObjectBDD {
+public class Enchere extends ObjectBDD {  
 
-    int id = -1;
-    String dateMise;
-    double prixMise=-1.0;
-    int usersId=-1;      
-    int appelEnchereId=-1;
-    int stateVenteId=-1;
+	private int id=-1;
+	private double prixMin=-1;
+	private String dateDebut;
+	private String dateExp;
+	private int usersId=-1;
+	private int categorieId=-1;
+	private int state=-1;
+	private String descProduit;
+	private double durer=-1;
 
-    public int getId() {
-        return id;
-    }
-    public Users getUsers() throws Exception {
-        Users vaovao = new Users();
-        vaovao.setId(this.usersId);
-        ArrayList<Users> cpt = vaovao.select(null);
-        return cpt.get(0);
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public AppelEnchere getAppelEnchere() throws Exception {
-        AppelEnchere vaovao = new AppelEnchere();
-        vaovao.setId(this.appelEnchereId);
-        ArrayList<AppelEnchere> cpt = vaovao.select(null);
-        return cpt.get(0);
-    }
-    
-    public StateVente getStateVente() throws Exception {
-        StateVente vaovao = new StateVente();
-        vaovao.setId(this.appelEnchereId);
-        ArrayList<StateVente> cpt = vaovao.select(null);
-        return cpt.get(0);
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+	/**
+	 * 
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getDateMise() {
-        return dateMise;
-    }
+	public double getPrixMin() {
+		return this.prixMin;
+	}
 
-    public void setDateMise(String dateMise) {
-        this.dateMise = dateMise;
-    }
+	/**
+	 * 
+	 * @param prixMin
+	 */
+	public void setPrixMin(double prixMin) {
+		this.prixMin = prixMin;
+	}
 
-    public double getPrixMise() {
-        return prixMise;
-    }
+	public String getDateDebut() {
+		return this.dateDebut;
+	}
 
-    public void setPrixMise(double prixMise) {
-        this.prixMise = prixMise;
-    }
+	/**
+	 * 
+	 * @param dateDebut
+	 */
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
 
-    public int getUsersId() {
-        return usersId;
-    }
+	public String getDateExp() {
+		return this.dateExp;
+	}
 
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
-    }
+	/**
+	 * 
+	 * @param dateExp
+	 */
+	public void setDateExp(String dateExp) {
+		this.dateExp = dateExp;
+	}
 
-    public int getAppelEnchereId() {
-        return appelEnchereId;
-    }
+	public int getUsersId() {
+		return this.usersId;
+	}
 
-    public void setAppelEnchereId(int appelEnchereId) {
-        this.appelEnchereId = appelEnchereId;
-    }
+	/**
+	 * 
+	 * @param usersId
+	 */
+	public void setUsersId(int usersId) {
+		this.usersId = usersId;
+	}
 
-    public int getStateVenteId() {
-        return stateVenteId;
-    }
+	public int getCategorieId() {
+		return this.categorieId;
+	}
 
-    public void setStateVenteId(int stateVenteId) {
-        this.stateVenteId = stateVenteId;
-    }
-    
+	/**
+	 * 
+	 * @param categorieId
+	 */
+	public void setCategorieId(int categorieId) {
+		this.categorieId = categorieId;
+	}
+
+	public int getState() {
+		return this.state;
+	}
+
+	/**
+	 * 
+	 * @param state
+	 */
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public String getDescProduit() {
+		return this.descProduit;
+	}
+
+	/**
+	 * 
+	 * @param descProduit
+	 */
+	public void setDescProduit(String descProduit) {
+		this.descProduit = descProduit;
+	}
+
+	public double getDurer() {
+		return this.durer;
+	}
+
+	/**
+	 * 
+	 * @param durer
+	 */
+	public void setDurer(double durer) {
+		this.durer = durer;
+	}
+
 }

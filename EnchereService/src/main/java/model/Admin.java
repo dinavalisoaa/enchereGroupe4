@@ -12,10 +12,12 @@ import java.util.Arrays;
  *
  * @author dina
  */
-@InfoDAO(table = "Categorie")
-public class Categorie extends ObjectBDD {
+@InfoDAO(table = "Admin")
+public class Admin extends ObjectBDD {  
+
 	private int id=-1;
-	private String nom;
+	private String login;
+	private String mdp;
 
 	public int getId() {
 		return this.id;
@@ -29,16 +31,28 @@ public class Categorie extends ObjectBDD {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return this.nom;
+	public String getLogin() {
+		return this.login;
 	}
 
 	/**
 	 * 
-	 * @param nom
+	 * @param login
 	 */
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getMdp() {
+		return this.mdp;
+	}
+
+	/**
+	 * 
+	 * @param mdp
+	 */
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
 	}
 
 }
