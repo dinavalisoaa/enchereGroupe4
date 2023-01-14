@@ -7,15 +7,15 @@ public class Connexion {
     public static Connection getConn() throws Exception {
          Connection connectionSQL=null;
         try {
-             String connectionUrl
-                = "jdbc:sqlserver://DESKTOP-S2H695T;database=volamena;"
-                + "user=sa;password=root;"
-                + "; trustServerCertificate=true;";
-         
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//            Class.forName("org.postgresql.Driver");
-        connectionSQL = DriverManager.getConnection(connectionUrl);
-        //            connectionSQL = DriverManager.getConnection("jdbc:postgresql://localhost:5432/volamena", "dina", "dina");
+//             String connectionUrl
+//                = "jdbc:sqlserver://DESKTOP-S2H695T;database=volamena;"
+//                + "user=sa;password=root;"
+//                + "; trustServerCertificate=true;";
+//         
+//        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("org.postgresql.Driver");
+//        connectionSQL = DriverManager.getConnection(connectionUrl);
+                    connectionSQL = DriverManager.getConnection("jdbc:postgresql://localhost:5432/enchere", "dina", "dina");
 
         System.out.println("Driver O.K.");
         } catch (Exception e) {

@@ -22,7 +22,7 @@ public class Enchere extends ObjectBDD {
 	private int usersId=-1;
 	private int categorieId=-1;
 	private int state=-1;
-	private String descProduit;
+	private String descriProduit;
 	private double durer=-1;
 
 	public int getId() {
@@ -109,16 +109,16 @@ public class Enchere extends ObjectBDD {
 		this.state = state;
 	}
 
-	public String getDescProduit() {
-		return this.descProduit;
+	public String getDescriProduit() {
+		return this.descriProduit;
 	}
 
 	/**
 	 * 
 	 * @param descProduit
 	 */
-	public void setDescProduit(String descProduit) {
-		this.descProduit = descProduit;
+	public void setDescriProduit(String descProduit) {
+		this.descriProduit = descProduit;
 	}
 
 	public double getDurer() {

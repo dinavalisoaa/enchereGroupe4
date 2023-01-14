@@ -2,19 +2,7 @@ package wservice;
 
 import antlr.Token;
 import com.google.gson.Gson;
-import io.jsonwebtoken.ExpiredJwtException;
-import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.HashMap;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import model.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,6 +29,42 @@ public class UsersController {
         String texte = gson.toJson(new Message(new Fail("404", "Not Found")));
         return texte;
     }
+    
+    @GetMapping("/users")
+    String users() throws Exception {
+        Gson gson = new Gson();
+        HashMap _val_ = new HashMap<String, Object>();
+        _val_.put("data", new Users().select(null));
+//        String texte = gson.toJson(new Users().select(null));
+        return gson.toJson(_val_);
+    }
+
+    @GetMapping("/users/{id}")
+    String users1(@PathVariable int id) throws Exception {
+        Gson gson = new Gson();
+        HashMap _val_ = new HashMap<String, Object>();
+        Users vao = new Users();
+        vao.setId(id);
+        _val_.put("data", vao.select(null));
+        return gson.toJson(_val_);
+    }
+    
+    @PostMapping("/users")
+    String getUsers(@RequestParam String nom, @RequestParam String prenom,
+            @RequestParam String login, @RequestParam String mdp) throws Exception {
+        Gson gson = new Gson();
+        HashMap _val_ = new HashMap<String, Object>();
+        Users vao = new Users();
+        vao.setLogin(login);
+        vao.setMdp(mdp);
+        vao.setNom(nom);
+        vao.setPrenom(prenom);
+        vao.insert(null);
+        _val_.put("data", new Message(new Success(vao.getLastID(), "Create Ok")));
+//        String texte = gson.toJson(new Users().select(null));
+        return gson.toJson(_val_);
+    }
+    
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
     @CrossOrigin
     HashMap<String, Object> login(@RequestHeader String logins, @RequestHeader String pwds) throws Exception {
@@ -65,19 +89,20 @@ public class UsersController {
         }
         return _val_;
     }
+    
     @RequestMapping(value = "/checkTokens", method = RequestMethod.GET, produces = "application/json")
     HashMap<String, Object> logins(@RequestHeader String login) throws Exception {
         HashMap _val_ = new HashMap<String, Object>();
         try {
             if (new TokenUtil().isTokenExpired(login)) {
-                _val_.put("datas",(new Fail("Exp", "404")));
+                _val_.put("datas", (new Fail("Exp", "404")));
                 return _val_;
             }
         } catch (Exception xc) {
             throw xc;
         }
-        _val_.put("datas", new Success(200,"Ok"));
-      
+        _val_.put("datas", new Success(200, "Ok"));
+        
         return _val_;
     }
 
