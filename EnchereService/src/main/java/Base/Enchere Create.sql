@@ -90,3 +90,19 @@ INSERT INTO Parametrage(id, value, nom) VALUES (1, '0.10', 'Commiission');
 INSERT INTO Parametrage(id, value, nom) VALUES (2, '24', 'HeureMax');
 INSERT INTO Parametrage(id, value, nom) VALUES (3, '18', 'AgeMin');
 INSERT INTO Parametrage(id, value, nom) VALUES (4, '1', 'DurerMin');
+CREATE TABLE DemandeRechargement (
+  id             SERIAL NOT NULL, 
+  dateDemande    date DEFAULT current_date, 
+  State          int4, 
+  Usersid        int4 NOT NULL, 
+  montant        float8, 
+  dateValidation date, 
+  PRIMARY KEY (id));
+ALTER TABLE DemandeRechargement ADD CONSTRAINT FKDemandeRec298056 FOREIGN KEY (Usersid) REFERENCES Users (id);
+alter table compte alter column datereload set default current_date;
+create sequence categorie_id_seq;
+alter table categorie alter column id set default nextval('categorie_id_seq');
+alter table encheremove alter column datemise set default current_date;
+select *from encheremove;
+
+alter table compte add column state int default 1;

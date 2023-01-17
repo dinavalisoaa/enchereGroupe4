@@ -2,6 +2,7 @@
 package model;
 
 import BddObject.Connexion;
+import BddObject.Ignore;
 import BddObject.InfoDAO;
 import BddObject.ObjectBDD;
 import java.sql.Connection;
@@ -19,7 +20,18 @@ public class EnchereAdj extends ObjectBDD {
 	private String dateAdj;
 	private int usersId=-1;
 	private int enchereMoveId=-1;
+@Ignore
+    Users user;
 
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+    
+    
 	public String getDateAdj() {
 		return this.dateAdj;
 	}
