@@ -25,5 +25,13 @@ public class Hello {
         SpringApplication.run(Hello.class, args);
     }
 
-    
+    @GetMapping("test")
+    String Create() throws Exception {
+        Gson gson = new Gson();
+        String texte = "\n";// gson.toJson(new Message(new Success(idKilo, "Success")));
+       Enchere vin=new Enchere();
+            vin.setId(1);
+            System.out.println("FIN::"+vin.getEnchere().getFin());
+        return Boolean.toString(vin.isExpirer()) +texte+vin.getEnchere().getFin();
+    }
 }

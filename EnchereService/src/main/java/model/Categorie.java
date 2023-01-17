@@ -33,6 +33,10 @@ public class Categorie extends ObjectBDD {
 		return this.nom;
 	}
 
+ public Categorie getCategorie() throws Exception{
+//    ArrayList<Users>vao=()
+return ((Categorie)this.select(null).get(0));
+    }
 	/**
 	 * 
 	 * @param nom

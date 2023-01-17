@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import model.*;
 import com.google.gson.*;
+import java.util.HashMap;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,15 +22,7 @@ import utils.Success;
 @RestController
 @CrossOrigin
 public class UsersEnchereService {
-//private int id=-1;
-//	private double prixMin=-1;
-//	private String dateDebut;
-//	private String dateExp;
-//	private int usersId=-1;
-//	private int categorieId=-1;
-//	private int state=-1;
-//	private String descProduit;
-////	private double durer=-1;
+//creer son propres en Encheres
 
     @PostMapping("/users/{id}/encheres")
     String Create(@RequestParam double prixMin,
@@ -54,7 +47,9 @@ public class UsersEnchereService {
         }
         return texte;
     }
- @PutMapping("/users/{id}/encheres/{idc}/ajd")
+
+    //update un encheres adjuger
+    @PutMapping("/users/{id}/encheres/{idc}/ajd")
     String updateAdj(@RequestParam double prixMin,
             @PathVariable int idc,
             @PathVariable int id) throws Exception {
@@ -69,10 +64,11 @@ public class UsersEnchereService {
             enchere.setUsersId(id);
 //            enchere.setDescriProduit(descriProduit);
 //            enchere.setDurer(durer);
-            enchere.setId(idc);enchere.setUsersId(id);
+            enchere.setId(idc);
+            enchere.setUsersId(id);
             enchere.setState(1);
-            
-            enchere.update("id",null);
+
+            enchere.update("id", null);
             texte = gson.toJson(new Message(new Success(id, "Update Ok!!")));
         } catch (Exception ex) {
             texte = gson.toJson(new Message(new Fail("500", ex.getMessage())));
@@ -80,6 +76,7 @@ public class UsersEnchereService {
         }
         return texte;
     }
+// update d'un enchere
 
     @PutMapping("/users/{id}/encheres/{idc}")
     String update(@RequestParam double prixMin,
@@ -98,7 +95,7 @@ public class UsersEnchereService {
             enchere.setDescriProduit(descriProduit);
             enchere.setDurer(durer);
             enchere.setId(id);
-            enchere.update("id",null);
+            enchere.update("id", null);
             texte = gson.toJson(new Message(new Success(id, "Update Ok!!")));
         } catch (Exception ex) {
             texte = gson.toJson(new Message(new Fail("500", ex.getMessage())));
@@ -106,61 +103,28 @@ public class UsersEnchereService {
         }
         return texte;
     }
+
+    //  get tous les encheresz
     @GetMapping("/users/{id}/encheres")
     String getOne(@PathVariable int id) throws Exception {
         Enchere am = new Enchere();
         am.setUsersId(id);
         Gson gson = new Gson();
-        String texte = gson.toJson(am.select(null));
-        return texte;
+//        String texte = gson.toJson(am.select(null));
+//        return texte;
+         HashMap _val_ = new HashMap<String, Object>();
+        _val_.put("data", am.select(null));
+        return gson.toJson(_val_);
     }
-//
-//    @PutMapping("/vehicules/{id}/kilometrages/{idKilo}")
-//    String upKilo(@PathVariable int id, @PathVariable int idKilo, @RequestParam double debut, @RequestParam double fin,
-//            @RequestParam String daty) throws Exception {
-//        Gson gson = new Gson();
-//        String texte = "";
-//        try {
-//            Kilometrage one = new Kilometrage();
-//            one.setVehiculeId(id);
-//            one.setId(idKilo);
-//            one.setFin(fin);
-//            one.setDebut(debut);
-//            one.setDaty(daty);
-//            one.update("id", null);
-//            texte = gson.toJson(new Message(new Success(idKilo, "Success")));
-//        } catch (Exception ex) {
-//            texte = gson.toJson(new Message(new Fail("500", "Error")));
-//        }
-//        return texte;
-////        one.
-//    }
-//
-//    @PostMapping("/vehicules/{id}/kilometrages")
-//    String newKilo(@PathVariable int id, @RequestParam double debut, @RequestParam double fin,
-//            @RequestParam String daty) throws Exception {
-//        Gson gson = new Gson();
-//        String texte = "";
-//        try {
-//            Kilometrage one = new Kilometrage();
-//            one.setVehiculeId(id);
-//            one.setFin(fin);
-//            one.setDebut(debut);
-//            one.setDaty(daty);
-//            one.insert(null);
-//            // texte = gson.toJson(new Message(new Success(((Kilometrage) one.getLastObject()).getId(), "Success")));
-//        } catch (Exception ex) {
-//            texte = gson.toJson(new Message(new Fail("500", "Error")));
-//        }
-//        return texte;
-//    }
-//
-//    @DeleteMapping("/vehicules/{id}/kilometrages/{idkilo}")
-//    void delKilo(@PathVariable int idkilo, @PathVariable int id) throws Exception {
-//        Kilometrage one = new Kilometrage();
-//        one.setId(idkilo);
-//        one.setVehiculeId(id);
-//        one.delete("id", null);
-//    }
 
+    @GetMapping("/users/{id}/encheres/{idc}")
+    String getOneEnc(@PathVariable int id, @PathVariable int idc) throws Exception {
+        Enchere am = new Enchere();
+        am.setUsersId(id);
+        am.setId(idc);
+        Gson gson = new Gson();
+          HashMap _val_ = new HashMap<String, Object>();
+        _val_.put("data", am.select(null));
+        return gson.toJson(_val_);
+    }
 }

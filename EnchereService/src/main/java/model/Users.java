@@ -26,6 +26,16 @@ public class Users extends ObjectBDD {
     public int getId() {
         return id;
     }
+    public Users getUsers() throws Exception{
+//    ArrayList<Users>vao=()
+return ((Users)this.select(null).get(0));
+    }
+    public double getCurrentMoney() throws Exception{
+        Compte  cpt=new Compte();
+        cpt.setUsersId(id);
+        double montant=((Compte)cpt.getLastObject()).getMontant();
+        return montant;
+    }
     public String getLogin() {
         return login;
     }

@@ -1,97 +1,126 @@
-
 package model;
 
-import BddObject.Connexion;
+import BddObject.Ignore;
 import BddObject.InfoDAO;
 import BddObject.ObjectBDD;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
  * @author dina
  */
 @InfoDAO(table = "EnchereMove")
-public class EnchereMove extends ObjectBDD {  
+public class EnchereMove extends ObjectBDD {
 
-	private String dateMise;
-	private double prixMise=-1;
-	private int state=-1;
-	private int usersId=-1;
-	private int enchereId=-1;
-	private int id=-1;
+    private String dateMise;
+    private double prixMise = -1;
+    private int state = -1;
+    private int usersId = -1;
+    private int enchereId = -1;
+    private int id = -1;
+@Ignore
+    Users user;
 
-	public String getDateMise() {
-		return this.dateMise;
-	}
+@Ignore
+    Enchere enchere;
 
-	/**
-	 * 
-	 * @param dateMise
-	 */
-	public void setDateMise(String dateMise) {
-		this.dateMise = dateMise;
-	}
+    public Enchere getEnchere() {
+        return enchere;
+    }
 
-	public double getPrixMise() {
-		return this.prixMise;
-	}
+    public void setEnchere(Enchere enchere) {
+        this.enchere = enchere;
+    }
 
-	/**
-	 * 
-	 * @param prixMise
-	 */
-	public void setPrixMise(double prixMise) {
-		this.prixMise = prixMise;
-	}
+    public Users getUser() {
+        return user;
+    }
 
-	public int getState() {
-		return this.state;
-	}
+    public void setUser(Users user) {
+        this.user = user;
+    }
+    
+    
+    public String getDateMise() {
+        return this.dateMise;
+    }
 
-	/**
-	 * 
-	 * @param state
-	 */
-	public void setState(int state) {
-		this.state = state;
-	}
+    /**
+     *
+     * @param dateMise
+     */
+    public void setDateMise(String dateMise) {
+        this.dateMise = dateMise;
+    }
 
-	public int getUsersId() {
-		return this.usersId;
-	}
+    public double getPrixMise() {
+        return this.prixMise;
+    }
 
-	/**
-	 * 
-	 * @param usersId
-	 */
-	public void setUsersId(int usersId) {
-		this.usersId = usersId;
-	}
+    /**
+     *
+     * @param prixMise
+     */
+    public Users getUsers() throws Exception {
+        Users us = new Users();
+        us.setId(this.usersId);
+        return ((Users) us.select(null).get(0));
+    }
 
-	public int getEnchereId() {
-		return this.enchereId;
-	}
+    public void setPrixMise(double prixMise) throws Exception {
+        System.out.println(this.getUsers().getCurrentMoney());
+        if (prixMise > this.getUsers().getCurrentMoney()) {
+            throw new Exception("Solde inferieur");
+        } else {
+            this.prixMise = prixMise;
+        }
+    }
 
-	/**
-	 * 
-	 * @param enchereId
-	 */
-	public void setEnchereId(int enchereId) {
-		this.enchereId = enchereId;
-	}
+    public int getState() {
+        return this.state;
+    }
 
-	public int getId() {
-		return this.id;
-	}
+    /**
+     *
+     * @param state
+     */
+    public void setState(int state) {
+        this.state = state;
+    }
 
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getUsersId() {
+        return this.usersId;
+    }
+
+    /**
+     *
+     * @param usersId
+     */
+    public void setUsersId(int usersId) {
+        this.usersId = usersId;
+    }
+
+    public int getEnchereId() {
+        return this.enchereId;
+    }
+
+    /**
+     *
+     * @param enchereId
+     */
+    public void setEnchereId(int enchereId) {
+        this.enchereId = enchereId;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }
