@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import BddObject.Connexion;
@@ -16,48 +13,47 @@ import java.util.Arrays;
  * @author dina
  */
 @InfoDAO(table = "EnchereAdj")
-public class EnchereAdj extends ObjectBDD {
+public class EnchereAdj extends ObjectBDD {  
 
-    int id = -1;
-    int usersId=-1;      
-    int enchereId=-1;
-String dateAdj;
+	private int id=-1;
+	private String dateAdj;
+	private int usersId=-1;
+	private int enchereMoveId=-1;
 
-    public int getId() {
-        return id;
-    }
+	public String getDateAdj() {
+		return this.dateAdj;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	/**
+	 * 
+	 * @param dateAdj
+	 */
+	public void setDateAdj(String dateAdj) {
+		this.dateAdj = dateAdj;
+	}
 
-    public int getUsersId() {
-        return usersId;
-    }
+	public int getUsersId() {
+		return this.usersId;
+	}
 
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
-    }
+	/**
+	 * 
+	 * @param usersId
+	 */
+	public void setUsersId(int usersId) {
+		this.usersId = usersId;
+	}
 
-    public int getEnchereId() {
-        return enchereId;
-    }
+	public int getEnchereMoveId() {
+		return this.enchereMoveId;
+	}
 
-    public void setEnchereId(int enchereId) {
-        this.enchereId = enchereId;
-    }
+	/**
+	 * 
+	 * @param enchereMoveId
+	 */
+	public void setEnchereMoveId(int enchereMoveId) {
+		this.enchereMoveId = enchereMoveId;
+	}
 
-    public String getDateAdj() {
-        return dateAdj;
-    }
-
-    public void setDateAdj(String dateAdj) {
-        this.dateAdj = dateAdj;
-    }
-    public Users getUsers() throws Exception {
-        Users vaovao = new Users();
-        vaovao.setId(this.usersId);
-        ArrayList<Users> cpt = vaovao.select(null);
-        return cpt.get(0);
-    }
 }

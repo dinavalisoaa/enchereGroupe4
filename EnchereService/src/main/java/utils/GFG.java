@@ -3,7 +3,7 @@ package utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import model.Personne;
+//import model.Personne;
   
 public class GFG {
   
@@ -97,11 +97,11 @@ public class GFG {
             = "insert into Personne(Nom,Prenom,Dtn,Adresse,Sexe) values('das','dsa','2022-11-28','das','homme')";
         String end_date
             = "2018-07-13 00:00:02";
-        Personne io=new Personne();
-        io.setDtn("2022-01-20");
-        io.setNom("Dina");
-        io.setId(12);
-        System.err.println(io.update("id"));
+//        Personne io=new Personne();
+//        io.setDtn("2022-01-20");
+//        io.setNom("Dina");
+//        io.setId(12);
+//        Sy.stem.err.println(io.update("id"));
         System.err.println(start_date.replaceAll("'", "`"));
     }
 }
