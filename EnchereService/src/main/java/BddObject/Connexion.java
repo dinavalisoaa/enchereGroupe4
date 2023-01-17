@@ -6,20 +6,13 @@ import java.sql.ResultSet;
 public class Connexion {
     public static Connection getConn() throws Exception {
          Connection connectionSQL=null;
-        try {
-             String connectionUrl
-                = "jdbc:sqlserver://DESKTOP-S2H695T;database=volamena;"
-                + "user=sa;password=root;"
-                + "; trustServerCertificate=true;";
-         
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//            Class.forName("org.postgresql.Driver");
-        connectionSQL = DriverManager.getConnection(connectionUrl);
-        //            connectionSQL = DriverManager.getConnection("jdbc:postgresql://localhost:5432/volamena", "dina", "dina");
-
-        System.out.println("Driver O.K.");
+         try {
+            Class.forName("org.postgresql.Driver");
+            connectionSQL = DriverManager.getConnection("jdbc:postgresql://localhost:5432/enchere","postgres","root");
+            System.out.println("Driver O.K");
         } catch (Exception e) {
-//            System.out.println("Nisy probelm connection");
+            System.out.println("tsia");
+            System.out.print(e);
             e.printStackTrace();
         }
         return connectionSQL;
