@@ -115,8 +115,19 @@ public class MIa {
     }
 
     public static void main(String[] args) throws Exception {
-        Connection con = Connexion.getConnection();
-//        con.close();
+      // String  date is given
+		String strDate = "2022-03-14T17:28:13.048999208";
+		// parse the date into date time
+	    LocalDateTime date = LocalDateTime.parse(strDate);
+	    
+		// Displaying date and time
+		System.out.println("Date : "+date);
+		
+		// Add 2 hours to the date
+		LocalDateTime newDate = date.plusHours(2);
+		
+		// Display result
+		System.out.println("New Date : "+newDate);
     }
 
     /*
