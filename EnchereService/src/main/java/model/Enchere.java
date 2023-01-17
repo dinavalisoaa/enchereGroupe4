@@ -5,6 +5,9 @@ import BddObject.Ignore;
 import BddObject.InfoDAO;
 import BddObject.ObjectBDD;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -34,6 +37,8 @@ public class Enchere extends ObjectBDD {
     Categorie cat;
     @Ignore
     boolean expirer;
+    @Ignore
+    private int Nbpersonne;
 
     public Categorie getCat() {
         return cat;
@@ -41,13 +46,13 @@ public class Enchere extends ObjectBDD {
 
     public boolean isExpirer() throws Exception {
 //        String f = "2023-01-17 08:22:20";//
-        String f=this.getFin();
-        LocalDateTime now=LocalDateTime.now();
-        String nows=now.toString().replace("T"," ");
-        double kk=Enchere.timestampDiff(f,nows);
-        System.err.println(">>>"+kk);
-        if(kk>=new Double(0)){
-        return false;
+        String f = this.getFin();
+        LocalDateTime now = LocalDateTime.now();
+        String nows = now.toString().replace("T", " ");
+        double kk = Enchere.timestampDiff(f, nows);
+        System.err.println(">>>" + kk);
+        if (kk >= new Double(0)) {
+            return false;
         }
         return true;
 
@@ -74,9 +79,10 @@ public class Enchere extends ObjectBDD {
         this.user = user;
     }
 //    public boolean isExp
-public static double timestampDiff(String start_date,
+
+    public static double timestampDiff(String start_date,
             String end_date) {
-    System.err.println(""+start_date+" - "+end_date);
+        System.err.println("" + start_date + " - " + end_date);
         // SimpleDateFormat converts the
         // string format to date object
         SimpleDateFormat sdf
@@ -147,6 +153,7 @@ public static double timestampDiff(String start_date,
         }
         return finaly;
     }
+
     public String getFin() throws Exception {
         Enchere vin = new Enchere();
         vin.setId(this.id);
@@ -280,4 +287,86 @@ public static double timestampDiff(String start_date,
         this.durer = durer;
     }
 
+    public Users getGagnant() throws SQLException {
+        Users valiny = new Users();
+        Connection connection = null;
+        try {
+            connection = Connexion.getConn();
+            String sql = "select * from encheremove\n"
+                    + "where encheremove.enchereid=" + this.getId() + "\n"
+                    + "and encheremove.prixmise in(\n"
+                    + "select max(prixmise) as maximum from encheremove  \n"
+                    + "where encheremove.enchereid=" + this.getId() + "\n"
+                    + "group by enchereid\n"
+                    + ")";
+            PreparedStatement preparedStatement = Connexion.getConn().prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Users users = new Users();
+                users.setId(resultSet.getInt("usersid"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            connection.close();
+            return valiny;
+        }
+    }
+
+    public int getEnchereVitany() throws SQLException {
+        int valiny = 0;
+        Connection connection = null;
+        try {
+            connection = Connexion.getConn();
+            String sql = "select * from(select  count(distinct(usersid)),enchereid from encheremove\n"
+                    + "group by enchereid)as tab_1 join enchere ON enchere.id = tab_1.enchereid"
+                    + " where enchereid=" + this.getId();
+            PreparedStatement preparedStatement = Connexion.getConn().prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                return resultSet.getInt("");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            connection.close();
+            return valiny;
+        }
+    }
+
+    public Enchere getTopEnchere() throws SQLException {
+        Enchere valiny = null;
+        Connection connection = null;
+        try {
+            connection = Connexion.getConn();
+            String sql = "select  count(distinct(usersid)) as isa,enchereid from encheremove\n"
+                    + "group by enchereid\n"
+                    + "order by isa desc \n"
+                    + "limit 1";
+            PreparedStatement preparedStatement = Connexion.getConn().prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){ 
+                Enchere enchere = new Enchere();
+                enchere.setId(resultSet.getInt("usersid"));
+                enchere.setNbpersonne(resultSet.getInt("isa"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            connection.close();
+            return valiny;
+        }
+    }
+
+    public int getNbpersonne() {
+        return Nbpersonne;
+    }
+
+    public void setNbpersonne(int Nbpersonne) {
+        this.Nbpersonne = Nbpersonne;
+    }
+    
 }

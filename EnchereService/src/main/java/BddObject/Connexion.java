@@ -8,7 +8,7 @@ public class Connexion {
          Connection connectionSQL=null;
          try {
             Class.forName("org.postgresql.Driver");
-            connectionSQL = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Enchere","postgres","root");
+            connectionSQL = DriverManager.getConnection("jdbc:postgresql://localhost:5432/enchere","postgres","root");
             System.out.println("Driver O.K");
         } catch (Exception e) {
             System.out.println("tsia");

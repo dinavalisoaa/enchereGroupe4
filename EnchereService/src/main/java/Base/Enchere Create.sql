@@ -140,7 +140,7 @@ insert into EnchereAdj (dateAdj,Usersid,EnchereMoveid)values('2023-01-17',3,13);
 Update encheremove set state=1 where id=13;
 
 
-/*maka izay user gagnant*/
+/*maka izay user gagnant-----vitaa */
 select * from encheremove
 where encheremove.enchereid=5
 and encheremove.prixmise in(
@@ -149,28 +149,28 @@ where encheremove.enchereid=5
 group by enchereid
 )
 
-/*maka ny isany ny olona nparticiper */
+/*maka ny isany ny olona nparticiper --- vita */
 select * from(select  count(distinct(usersid)),enchereid from encheremove
 group by enchereid)as tab_1 join enchere ON enchere.id = tab_1.enchereid
 
-/* utilisateur le plus actif */
+/* utilisateur le plus actif ---  vita*/
 select sum(isa),usersid from (
 select count(usersid) as isa,enchereid,usersid from encheremove  
 group by enchereid,usersid
 )as b
 group by usersid
 
-/* enchere be panao ndrindra */
+/* enchere be panao ndrindra--- vita */
 select  count(distinct(usersid)) as isa,enchereid from encheremove
 group by enchereid
 order by isa desc 
 limit 1
 
-/* encher gagner par utilisateur */
+/* encher gagner par utilisateur --vita*/
 select count(*),usersid from encheremove where state=1
 group by usersid
 
-/* olona nirecaharge ny compteny be nrindra */
+/* olona nirecaharge ny compteny be nrindra --viitaa */
 select count(*) as isa,usersid from compte
 group by usersid 
 order by isa desc
