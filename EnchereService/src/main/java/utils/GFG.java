@@ -2,7 +2,9 @@
 package utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import model.Users;
 //import model.Personne;
   
 public class GFG {
@@ -93,16 +95,18 @@ public class GFG {
     public static void main(String[] args) throws Exception
     {
         // Given start Date
-        String start_date
-            = "insert into Personne(Nom,Prenom,Dtn,Adresse,Sexe) values('das','dsa','2022-11-28','das','homme')";
-        String end_date
-            = "2018-07-13 00:00:02";
+//        String start_date
+//            = "insert into Personne(Nom,Prenom,Dtn,Adresse,Sexe) values('das','dsa','2022-11-28','das','homme')";
+//        String end_date
+//            = "2018-07-13 00:00:02";
 //        Personne io=new Personne();
 //        io.setDtn("2022-01-20");
 //        io.setNom("Dina");
 //        io.setId(12);
 //        Sy.stem.err.println(io.update("id"));
-        System.err.println(start_date.replaceAll("'", "`"));
+        //System.err.println(start_date.replaceAll("'", "`"));
+        model.Users users=new Users();
+        ArrayList<Users> LUser=users.getEnchereVitany();
     }
 }
 
