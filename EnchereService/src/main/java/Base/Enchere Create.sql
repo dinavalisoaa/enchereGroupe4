@@ -132,6 +132,7 @@ insert into EnchereMove(Usersid,Enchereid,prixMise)values(1,5,120000);
 insert into EnchereMove(Usersid,Enchereid,prixMise)values(3,5,125000);
 insert into EnchereMove(Usersid,Enchereid,prixMise)values(1,5,126000);
 insert into EnchereMove(Usersid,Enchereid,prixMise)values(3,5,130000);
+insert into EnchereMove(Usersid,Enchereid,prixMise)values(2,5,130000);
 
 insert into EnchereAdj (dateAdj,Usersid,EnchereMoveid)values('2023-01-17',3,7);
 Update encheremove set state=1 where id=7;
@@ -153,9 +154,30 @@ select * from(select  count(distinct(usersid)),enchereid from encheremove
 group by enchereid)as tab_1 join enchere ON enchere.id = tab_1.enchereid
 
 /* utilisateur le plus actif */
+select sum(isa),usersid from (
+select count(usersid) as isa,enchereid,usersid from encheremove  
+group by enchereid,usersid
+)as b
+group by usersid
 
 /* enchere be panao ndrindra */
+select  count(distinct(usersid)) as isa,enchereid from encheremove
+group by enchereid
+order by isa desc 
+limit 1
 
 /* encher gagner par utilisateur */
+select count(*),usersid from encheremove where state=1
+group by usersid
 
 /* olona nirecaharge ny compteny be nrindra */
+select count(*) as isa,usersid from compte
+group by usersid 
+order by isa desc
+limit 1
+
+/* categori be mpanao ndrindra */
+select count(*) as isa,categorieid from enchere
+group by categorieid
+order by isa desc
+limit 1
