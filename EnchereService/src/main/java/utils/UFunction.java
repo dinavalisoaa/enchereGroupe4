@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +27,9 @@ import java.util.logging.Logger;
  */
 public class UFunction {
 //  
-    
+    public final String current_timestamp=Timestamp.valueOf(LocalDateTime.now()).toString();
+        public final String current_time=Date.valueOf(LocalDate.now()).toString();
+
 public static int getSequence(String str) {
         Connection connect = null;
         Statement stmt = null;
