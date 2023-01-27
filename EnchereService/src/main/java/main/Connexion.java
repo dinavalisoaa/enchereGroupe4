@@ -24,7 +24,7 @@ public class Connexion {
          
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 //        Connection con = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-S2H695T\\Dina;databaseName=volamena;integratedSecurity=false;Trusted Connection=true","sa","root");
-        Connection con = DriverManager.getConnection(connectionUrl);
+        Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/volamena", "postgres", "root");
          PreparedStatement ps = con.prepareStatement("SELECT * FROM miniere");
             /*PreparedStatement ps= connection.prepareStatement("INSERT INTO Personne VALUES (CONCAT('Personne_',NEXT VALUE FOR s_Personne),'AndryBe','Soabe','Need2','it')");
             ps.execute();*/

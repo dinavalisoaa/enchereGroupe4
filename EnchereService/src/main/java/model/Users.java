@@ -27,7 +27,7 @@ public class Users extends ObjectBDD {
     String login;
     String mdp;
     String prenom;
-    private int genreid;
+    int genreid;
     private Date dtn;
     @Ignore
     private int enchereFait;

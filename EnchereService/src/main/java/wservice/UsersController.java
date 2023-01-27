@@ -26,7 +26,8 @@ public class UsersController {
         return texte;
     }
 
-    @GetMapping("/inscription")
+    @CrossOrigin
+    @PostMapping("/inscription")
     String inscription(@RequestParam String Nom, @RequestParam String Prenom, @RequestParam String email,
             @RequestParam String mdps, @RequestParam String genreid, @RequestParam String dateN) {
         Gson gson = new Gson();

@@ -1,8 +1,3 @@
-CREATE TABLE genre(
-id SERIAL NOT NULL primary key,
-nom varchar(255)
-);
-
 CREATE TABLE EnchereMove (
   id        SERIAL NOT NULL, 
   dateMise  date, 
@@ -40,8 +35,7 @@ CREATE TABLE Users (
   id     SERIAL NOT NULL, 
   mdp    varchar(255), 
   dtn    date, 
-  prenom varchar(255),
-  genreid int references genre(id),
+  prenom varchar(255), 
   PRIMARY KEY (id));
 CREATE TABLE Admin (
   id    SERIAL NOT NULL, 
@@ -75,10 +69,6 @@ ALTER TABLE EnchereMove ADD CONSTRAINT FKEnchereMov175845 FOREIGN KEY (Enchereid
 ALTER TABLE EnchereAdj ADD CONSTRAINT FKEnchereAdj78699 FOREIGN KEY (Usersid) REFERENCES Users (id);
 ALTER TABLE EnchereAdj ADD CONSTRAINT FKEnchereAdj549353 FOREIGN KEY (EnchereMoveid) REFERENCES EnchereMove (id);
 ALTER TABLE Compte ADD CONSTRAINT FKCompte376569 FOREIGN KEY (Usersid) REFERENCES Users (id);
-
-insert into genre values(1,'Homme');
-insert into genre values(2,'Femme');
-
 INSERT INTO Categorie(id, nom) VALUES (1, 'Electronique');
 INSERT INTO Categorie(id, nom) VALUES (2, 'Menagere');
 INSERT INTO Categorie(id, nom) VALUES (3, 'MecaniqueAuto');
@@ -87,9 +77,9 @@ INSERT INTO Categorie(id, nom) VALUES (5, 'Equipement');
 INSERT INTO Categorie(id, nom) VALUES (6, 'Mobilere');
 INSERT INTO Categorie(id, nom) VALUES (7, 'Cuisine');
 INSERT INTO Categorie(id, nom) VALUES (8, 'Alimentaire');
-INSERT INTO Users(nom, login, id, mdp, dtn, prenom,genreid) VALUES ('Rakoto', 'rakoto@u.com', 1, 'rakoto', '2000-02-02', 'Kenny',1);
-INSERT INTO Users(nom, login, id, mdp, dtn, prenom,genreid) VALUES ('Rabe', 'rabe@u.com', 2, 'rabe', '1999-09-12', 'Antoine',1);
-INSERT INTO Users(nom, login, id, mdp, dtn, prenom,genreid) VALUES ('Randria', 'rabdria@u.com', 3, 'randria', '2001-11-11', 'Fidy',1);
+INSERT INTO Users(nom, login, id, mdp, dtn, prenom) VALUES ('Rakoto', 'rakoto@u.com', 1, 'rakoto', '2000-02-02', 'Kenny');
+INSERT INTO Users(nom, login, id, mdp, dtn, prenom) VALUES ('Rabe', 'rabe@u.com', 2, 'rabe', '1999-09-12', 'Antoine');
+INSERT INTO Users(nom, login, id, mdp, dtn, prenom) VALUES ('Randria', 'rabdria@u.com', 3, 'randria', '2001-11-11', 'Fidy');
 INSERT INTO Admin(id, login, mdp) VALUES (1, 'root', 'root');
 INSERT INTO Parametrage(id, value, nom) VALUES (1, '0.10', 'Commiission');
 INSERT INTO Parametrage(id, value, nom) VALUES (2, '24', 'HeureMax');
@@ -148,46 +138,45 @@ Update encheremove set state=1 where id=7;
 insert into EnchereAdj (dateAdj,Usersid,EnchereMoveid)values('2023-01-17',3,13);
 Update encheremove set state=1 where id=13;
 
-/*
---maka izay user gagnant
+
+/*maka izay user gagnant-----vitaa */
 select * from encheremove
 where encheremove.enchereid=5
 and encheremove.prixmise in(
 select max(prixmise) as maximum from encheremove  
 where encheremove.enchereid=5
 group by enchereid
-);
+)
 
---maka ny isany ny olona nparticiper 
+/*maka ny isany ny olona nparticiper --- vita */
 select * from(select  count(distinct(usersid)),enchereid from encheremove
 group by enchereid)as tab_1 join enchere ON enchere.id = tab_1.enchereid
 
---utilisateur le plus actif
+/* utilisateur le plus actif ---  vita*/
 select sum(isa),usersid from (
 select count(usersid) as isa,enchereid,usersid from encheremove  
 group by enchereid,usersid
 )as b
 group by usersid
 
---enchere be panao ndrindra
+/* enchere be panao ndrindra--- vita */
 select  count(distinct(usersid)) as isa,enchereid from encheremove
 group by enchereid
 order by isa desc 
 limit 1
 
---encher gagner par utilisateur
+/* encher gagner par utilisateur --vita*/
 select count(*),usersid from encheremove where state=1
 group by usersid
 
---olona nirecaharge ny compteny be nrindra --viitaa 
+/* olona nirecaharge ny compteny be nrindra --viitaa */
 select count(*) as isa,usersid from compte
 group by usersid 
 order by isa desc
 limit 1
 
---categori be mpanao ndrindra 
+/* categori be mpanao ndrindra */
 select count(*) as isa,categorieid from enchere
 group by categorieid
 order by isa desc
 limit 1
-*/
