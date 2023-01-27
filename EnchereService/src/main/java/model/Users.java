@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 
 /**
  *
@@ -27,12 +27,15 @@ public class Users extends ObjectBDD {
     String login;
     String mdp;
     String prenom;
+    private int genreid;
+    private Date dtn;
     @Ignore
     private int enchereFait;
     @Ignore
     private int enchereGagner;
     @Ignore
     private int nbrechargeCompte;
+   
 
     public int getId() {
         return id;
@@ -216,6 +219,22 @@ public class Users extends ObjectBDD {
     public void setNbrechargeCompte(int nbrechargeCompte) {
         this.nbrechargeCompte = nbrechargeCompte;
     }
-    
 
+    public int getGenreid() {
+        return genreid;
+    }
+
+    public void setGenreid(int genreid) {
+        this.genreid = genreid;
+    }
+
+    public Date getDtn() {
+        return dtn;
+    }
+
+    public void setDtn(Date dtn) {
+        this.dtn = dtn;
+    }
+
+   
 }

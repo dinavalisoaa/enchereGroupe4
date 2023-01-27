@@ -1,19 +1,15 @@
 package wservice;
 
-import antlr.Token;
 import com.google.gson.Gson;
+import java.util.Date;
 import java.util.HashMap;
 import model.*;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import utils.Data;
 import utils.Fail;
 import utils.Message;
 import utils.Success;
@@ -22,14 +18,38 @@ import utils.Success;
 @RestController
 @CrossOrigin
 public class UsersController {
-    
+
     @GetMapping("/login_")
     String test() {
         Gson gson = new Gson();
         String texte = gson.toJson(new Message(new Fail("404", "Not Found")));
         return texte;
     }
-    
+
+    @GetMapping("/inscription")
+    String inscription(@RequestParam String Nom, @RequestParam String Prenom, @RequestParam String email,
+            @RequestParam String mdps, @RequestParam String genreid, @RequestParam String dateN) {
+        Gson gson = new Gson();
+        String texte = null;
+        try {
+            Users users=new Users();
+            users.setNom(Nom);
+            users.setPrenom(Prenom);
+            users.setLogin(email);
+            users.setMdp(mdps);
+            users.setDtn(new Date());
+            users.setGenreid(Integer.parseInt(genreid));
+            users.insert(null);
+            texte=gson.toJson(new Message(new Success('1',"insertion des donnee reussi")));
+        } catch (Exception e) {
+            e.printStackTrace();
+            texte=gson.toJson(new Message(new Fail(e.getMessage(),e.getLocalizedMessage())));
+            throw e;
+        } finally {
+            return texte;
+        }
+    }
+
     @GetMapping("/users")
     String users() throws Exception {
         Gson gson = new Gson();
@@ -48,7 +68,7 @@ public class UsersController {
         _val_.put("data", vao.select(null));
         return gson.toJson(_val_);
     }
-    
+
     @PostMapping("/users")
     String getUsers(@RequestParam String nom, @RequestParam String prenom,
             @RequestParam String login, @RequestParam String mdp) throws Exception {
@@ -64,7 +84,7 @@ public class UsersController {
 //        String texte = gson.toJson(new Users().select(null));
         return gson.toJson(_val_);
     }
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
     @CrossOrigin
     HashMap<String, Object> login(@RequestHeader String logins, @RequestHeader String pwds) throws Exception {
@@ -89,7 +109,7 @@ public class UsersController {
         }
         return _val_;
     }
-    
+
     @RequestMapping(value = "/checkTokens", method = RequestMethod.GET, produces = "application/json")
     HashMap<String, Object> logins(@RequestHeader String login) throws Exception {
         HashMap _val_ = new HashMap<String, Object>();
@@ -102,7 +122,7 @@ public class UsersController {
             throw xc;
         }
         _val_.put("datas", new Success(200, "Ok"));
-        
+
         return _val_;
     }
 

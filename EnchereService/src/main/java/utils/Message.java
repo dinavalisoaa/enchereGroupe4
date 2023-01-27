@@ -9,19 +9,20 @@ package utils;
  * @author dina
  */
 public class Message {
- Success data;
- Fail error;
- 
+
+    Success data;
+    Fail error;
 
     public Message() {
     }
- 
-public Message( Fail error){
-            this.error = error;
 
-}
+    public Message(Fail error) {
+        this.error = error;
+
+    }
+
     public Message(Success data) {
         this.data = data;
     }
-    
+
 }
